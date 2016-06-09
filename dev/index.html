@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-ng-app="Gauge">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no">
@@ -7,11 +7,49 @@
   <link rel="stylesheet" type="text/css" href="assets/css/main.min.css">
   <title>Usuários Influentes - Gauge</title>
 </head>
-<body>
+<body data-ng-controller="ChartController as mainCtrl">
   <div class="gauge__wrapper">
     <div class="gauge__content">
       <div class="container">
-        <h1>Usuários Influentes</h1>
+        <div class="gauge__tab">
+          <h1>Usuários Influentes</h1>
+          <label for="brands">Filter brands</label>
+          <select name="brands" class="form-control" data-ng-model="mainCtrl.currentBrand">
+            <option value="all" selected>Todas</option>
+            <option data-ng-repeat="brand in mainCtrl.brands" data-ng-value="brand.id" data-ng-bind="brand.name"></option>
+          </select>
+          <p>Clique em um usuário para ver detalhes das iterações.</p>
+          <div class="table-responsive">
+            <table class="table table-hover">
+            <thead>
+              <tr>
+                <td>Username</td>
+                <td>Name</td>
+                <td>Gender</td>
+                <td>Total Interactions</td>
+                <td>Picture</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="user in mainCtrl.users | orderBy:brandSort:true | filter: brandFilter()" data-ng-show="mainCtrl.allDataLoaded" class="ng-cloak" data-toggle="modal" data-target=".gauge__user__interactions" data-ng-click="mainCtrl.setCurrentUserID(user.id)">
+                <td data-ng-bind="user.login.username"></td>
+                <td class="capitalize">{{user.name.title}} {{user.name.first}} {{user.name.last}}</td>
+                <td class="capitalize" data-ng-bind="user.gender" data-ng-class="{female: user.gender === 'female', 'male': user.gender === 'male'}"></td>
+                <td>
+                  <span data-ng-bind="user.totalInteractions" data-ng-show="mainCtrl.currentBrand === 'all'"></span>
+                  <span data-ng-repeat="brand in mainCtrl.brands" data-ng-show="mainCtrl.currentBrand === brand.id.toString()" class="brand">{{user.interactions[brand.id].totalInteractions}} <img data-ng-src="{{brand.image}}"></span>
+                </td>
+                <td><img data-ng-src="{{user.picture.thumbnail}}"></td>
+              </tr>
+            </tbody>
+            </table>
+          </div>
+          <div class="sk-three-bounce" data-ng-hide="mainCtrl.allDataLoaded">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+          </div>
+        </div>
       </div>
     </div><!-- content -->
     <footer class="gauge__footer">
@@ -19,17 +57,48 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="gauge__footer__social">
-              <a href="#" title="LinkedIn" target="_blank"></a>
-              <a href="#" title="Facebook" target="_blank"></a>
+              <a href="https://br.linkedin.com/in/rômulo-rocha-martins-vieira-265411a2" title="LinkedIn" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+              <a href="https://www.facebook.com/romulorocha.martinsvieira" title="Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
             </div>
           </div>
-          <div class="col-sm-6"></div>
+          <div class="col-sm-6">
+            <div class="gauge__footer__powered">
+              <p>powered by Rômulo Rocha</p>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
   </div><!-- wrapper -->
+  <div class="modal fade gauge__user__interactions" tabindex="-1" role="dialog" aria-labelledby="gaugeUserInteractionModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title"><span>{{mainCtrl.user.name.title}} {{mainCtrl.user.name.first}} {{mainCtrl.user.name.last}}</span> ({{mainCtrl.user.login.username}})</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-2"><img data-ng-src="{{mainCtrl.user.picture.large}}" class="gauge__user__interactions__picture"></div>
+            <div class="col-sm-10">
+              <p><strong>Location:</strong> {{mainCtrl.user.location.street}}, {{mainCtrl.user.location.city}} - {{mainCtrl.user.location.state}} - {{mainCtrl.user.location.postcode}}</p>
+              <p><strong>E-mail:</strong> {{mainCtrl.user.email}}</p>
+              <p><strong>Phone:</strong> {{mainCtrl.user.phone}}</p>
+              <p><strong>Cellphone:</strong> {{mainCtrl.user.cell}}</p>
+              <p><strong>Nationality:</strong> {{mainCtrl.user.nat}}</p>
+            </div>
+          </div>
+          <div class="gauge__user__interactions__chart" id="interaction-chart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <script type="text/javascript" src="assets/js/jquery.min.js"></script>
   <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="assets/js/angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/plugins/angular-animate.min.js"></script>
+  <script type="text/javascript" src="assets/js/plugins/highcharts.min.js"></script>
+  <script type="text/javascript" src="assets/app/gaugeModule.min.js"></script>
+  <script type="text/javascript" src="assets/app/components/chartController.js"></script>
 </body>
 </html>

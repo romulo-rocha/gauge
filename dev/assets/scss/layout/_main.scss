@@ -24,9 +24,96 @@ html, body {
     position: relative;
   }
   @include element('content') {
-    padding-bottom: 1081px;
-    @media (min-width: $screen-md-min) {
-      padding-bottom: 557px;
+    padding-bottom: 80px;
+    @media (min-width: $screen-sm-min) {
+      padding-bottom: 45px;
+    }
+    h1 {
+      text-transform: uppercase;
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+    table {
+      thead {
+        font-weight: 600;
+      }
+      tbody {
+        tr {
+          cursor: pointer;
+          td {
+            vertical-align: middle;
+            &.capitalize {
+              text-transform: capitalize;
+            }
+            &.male {
+              color: #4c7bd4;
+            }
+            &.female {
+              color: #ea3da4;
+            }
+            span {
+              &.brand {
+                img {
+                  margin-left: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .sk-three-bounce {
+      .sk-child {
+        background: $tertiary-color;
+      }
+    }
+    .form-control {
+      margin-bottom: 20px;
+    }
+  }
+  @include element('tab') {
+    background: $lighter-color1;
+    border-radius: 7px;
+    padding: 20px 15px;
+    margin-top: 20px;
+    box-shadow: 0 4px 0px 3px lighten($lighter-color3, 5%);
+    &:last-child {
+      margin-bottom: 30px;
+    }
+  }
+  @include element('user') {
+    @include element('interactions') {
+      h4 {
+        span {
+          text-transform: capitalize;
+        }
+      }
+      @include element('picture') {
+        max-width: 100%;
+        margin-bottom: 15px;
+        @media (min-width: $screen-sm-min) {
+          margin-bottom: 0;
+        }
+      }
+      .modal-body {
+        @media (min-width: $screen-sm-min) {
+          text-align: left;
+        }
+      }
+      @include element('chart') {
+        min-width: 270px;
+        height: 500px;
+        @media (min-width: $screen-sm-min) {
+          min-width: 570px;
+        }
+        @media (min-width: $screen-md-min) {
+          min-width: 870px;
+        }
+        .highcharts-container {
+          //width: 100%!important;
+        }
+      }
     }
   }
   @include element('header') {
@@ -74,214 +161,29 @@ html, body {
     width: 100%;
     bottom: 0;
     left: 0;
-    background: $secondary-color2;
-    .container {
-      max-width: 1271px;
-      width: 100%;
-    }
-    @include element('instagram') {
-      $item-height: 215px;
-      height: $item-height;
-      position: relative;
-      color: $lighter-color1;
-      @include element('carousel') {
-        @include element('item') {
-          height: $item-height;
-          position: relative;
-          overflow: hidden;
-          a {
-            &:hover {
-              img {
-                opacity: 1;
-              }
-            }
-          }
-          img {
-            position: absolute;
-            min-width: 100%;
-            min-height: 100%;
-            top: 50%;
-            left: 50%;
-            transform: translateY(-50%) translateX(-50%);
-            opacity: 0.5;
-            transition: all 200ms ease-in-out;
-          }
-        }
-      }
-      @include element('title') {
-        margin: 0;
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 23px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateY(-50%) translateX(-50%);
-        @media (min-width: $screen-md-min) {
-          min-width: 640px;
-        }
-        a {
-          color: inherit;
-          text-decoration: none!important;
-        }
-        span {
-          letter-spacing: 10.8px;
-          display: none;
-          @media (min-width: $screen-sm-min) {
-            display: block;
-            margin-top: 15px;
-          }
-          @media (min-width: $screen-md-min) {
-            display: inline-block;
-            margin-top: 0;
-            vertical-align: middle;
-          }
-        }
-        img {
-          vertical-align: middle;
-          @media (min-width: $screen-md-min) {
-            margin-right: 15px;
-          }
-        }
-      }
-    }
-    @include element('info') {
-      color: $secondary-color3;
-      padding-bottom: 50px;
-      @include element('item') {
-        text-transform: uppercase;
-        font-weight: 200;
-        letter-spacing: 2px;
-        @media (min-width: $screen-sm-min) {
-          min-height: 143px;
-          font-size: 20px;
-        }
-        @media (min-width: $screen-md-min) {
-          min-height: 0;
-        }
-        ul {
-          margin: 0;
-          padding: 0;
-          list-style: none;
-          li {
-            margin-bottom: 1px;
-          }
-        }
-        a {
-          color: inherit;
-          text-decoration: none!important;
-          transition: color 200ms ease-in-out;
-          &:hover {
-            color: $tertiary-color;
-          }
-        }
-        h3 {
-          font-weight: normal;
-          margin-top: 56px;
-          margin-bottom: 3px;
-          font-size: 14px;
-          @media (min-width: $screen-sm-min) {
-            font-size: 20px;
-          }
-        }
-        @include element('social') {
-          margin-top: 36px;
-          font-size: 25px;
-          a {
-            &:not(:last-child) {
-              margin-right: 31px;
-            }
-          }
-        }
-      }
-    }
-    @include element('copyrights') {
-      border-top: 1px solid $lighter-color1;
-      text-transform: uppercase;
-      font-weight: 200;
-      letter-spacing: 2.2px;
-      padding: 28px;
-      padding-bottom: 19px;
-      font-size: 12px;
+    background: $darker-color3;
+    color: $lighter-color1;
+    padding: 10px 0;
+    @include element('social') {
+      font-size: 18px;
+      margin-bottom: 15px;
       @media (min-width: $screen-sm-min) {
-        font-size: 8px;
+        text-align: left;
+        margin-bottom: 0;
       }
-      @media (min-width: $screen-md-min) {
-        font-size: 13px;
-      }
-      @media (min-width: $screen-lg-min) {
-        font-size: 14px;
-      }
-      span {
-        vertical-align: middle;
-        display: block;
-        margin: 10px auto;
-        @media (min-width: $screen-sm-min) {
-          display: inline-block;
-          margin: 0;
+      a {
+        color: inherit;
+        &:not(:last-child) {
+          margin-right: 10px;
         }
+      }
+    }
+    @include element('powered') {
+      @media (min-width: $screen-sm-min) {
+        text-align: right;
       }
       p {
-        //margin-bottom: 0;
-      }
-      @include element('shadevenne') {
-        @media (min-width: $screen-sm-min) {
-          text-align: left;
-        }
-        img {
-          @media (min-width: $screen-sm-min) {
-            margin-right: 15px;
-            margin-bottom: 0;
-          }
-        }
-      }
-      @include element('pronegocio') {
-        @media (min-width: $screen-sm-min) {
-          text-align: right;
-        }
-        img {
-          height: 37px;
-          @media (min-width: $screen-sm-min) {
-            margin-left: 5px;
-            margin-bottom: 0;
-          }
-        }
-      }
-    }
-  }
-  @include element('catalog-call') {
-    color: $secondary-color4;
-    border: 1px solid $secondary-color5;
-    text-transform: uppercase;
-    font-weight: 300;
-    letter-spacing: 9px;
-    padding: 10px 33px;
-    line-height: 2.1;
-    text-decoration: none!important;
-    transition: all 200ms ease-in-out;
-    display: block;
-    font-size: 18px;
-    @media (min-width: $screen-sm-min) {
-      font-size: 27px;
-      display: inline-block;
-    }
-    &:hover {
-      color: $tertiary-color;
-      border-color: $tertiary-color;
-    }
-    @include modifier('home-cover') {
-      background: $secondary-color;
-      border: none;
-      margin-top: 250px;
-      padding: 11px 35px;
-      margin-bottom: 366px;
-    }
-    @include modifier('collection') {
-      margin-bottom: 169px;
-      position: relative;
-      //top: -85px;
-      @media (min-width: $screen-sm-min) {
-        //top: -11px;
+        margin-bottom: 0;
       }
     }
   }
