@@ -1,0 +1,28 @@
+$screen-sm-min: 768px;
+$screen-xs-max: $screen-sm-min - 1px;
+$screen-md-min: 992px;
+$screen-sm-max: $screen-md-min - 1px;
+$screen-lg-min: 1200px;
+$screen-md-max: $screen-lg-min - 1px;
+
+$primary-color: #f1f1f1;
+
+$secondary-color: #000001;
+$secondary-color2: #000000;
+$secondary-color3: #f1eff0;
+$secondary-color4: #f1eff1;
+$secondary-color5: #fcfdfb;
+
+$tertiary-color: #d3c5b4;
+
+$darker-color1: #0f0c0c;
+$darker-color2: #272424;
+$darker-color3: #333333;
+$darker-color4: #696868;
+$darker-color5: #666;
+
+$lighter-color1: #fff;
+$lighter-color2: #cccccc;
+$lighter-color3: #cdcdcd;
+
+$container-padding: 15px;

@@ -1,0 +1,27 @@
+{
+  "name": "gauge",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Rômulo Rocha"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/romulo-rocha/gauge",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "highcharts": "^4.2.5"
+  },
+  "devDependencies": {
+    "angular": "1.5.6",
+    "jquery": "1.12.4",
+    "angular-animate": "1.5.6",
+    "bootstrap": "3.3.6"
+  }
+}
