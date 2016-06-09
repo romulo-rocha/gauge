@@ -12,10 +12,10 @@
     <div class="gauge__content">
       <div class="container">
         <div class="gauge__tab">
-          <h1>Usuários Influentes</h1>
+          <h1 class="wow fadeInUp">Usuários Influentes</h1>
           <label for="brands">Filter brands</label>
           <select name="brands" class="form-control" data-ng-model="mainCtrl.currentBrand">
-            <option value="all" selected>Todas</option>
+            <option value="all" selected>All</option>
             <option data-ng-repeat="brand in mainCtrl.brands" data-ng-value="brand.id" data-ng-bind="brand.name"></option>
           </select>
           <p>Clique em um usuário para ver detalhes das iterações.</p>
@@ -57,13 +57,13 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="gauge__footer__social">
-              <a href="https://br.linkedin.com/in/rômulo-rocha-martins-vieira-265411a2" title="LinkedIn" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-              <a href="https://www.facebook.com/romulorocha.martinsvieira" title="Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              <a href="https://br.linkedin.com/in/rômulo-rocha-martins-vieira-265411a2" title="LinkedIn" target="_blank"><i class="fa fa-linkedin" aria-hidden="true" class="fadeInUp wow"></i></a>
+              <a href="https://www.facebook.com/romulorocha.martinsvieira" title="Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true" class="fadeInUp wow"></i></a>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="gauge__footer__powered">
-              <p>powered by Rômulo Rocha</p>
+              <p class="wow fadeInUp">powered by Rômulo Rocha</p>
             </div>
           </div>
         </div>
@@ -96,9 +96,15 @@
   <script type="text/javascript" src="assets/js/jquery.min.js"></script>
   <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="assets/js/angular.min.js"></script>
-  <script type="text/javascript" src="assets/js/plugins/angular-animate.min.js"></script>
   <script type="text/javascript" src="assets/js/plugins/highcharts.min.js"></script>
+  <script type="text/javascript" src="assets/js/plugins/wow.min.js"></script>
+  <script type="text/javascript" src="assets/js/plugins/angular-animate.min.js"></script>
   <script type="text/javascript" src="assets/app/gaugeModule.min.js"></script>
   <script type="text/javascript" src="assets/app/components/chartController.js"></script>
+  <script type="text/javascript">
+    (function () {
+      new WOW().init();
+    }());
+  </script>
 </body>
 </html>
